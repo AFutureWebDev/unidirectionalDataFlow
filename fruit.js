@@ -11,7 +11,13 @@ let fruits = d3.range(5)
     .map(() => makeFruit('apple'));
 let selectedFruit = null;
 
-const onClick = id => {
+//This function was used for onclick functionality - if you want to use this instead of hover, just put onclick where you see setSelectedFruit.
+// const onClick = id => {
+//     selectedFruit = id;
+//     render();
+// }
+
+const setSelectedFruit = id => {
     selectedFruit = id;
     render();
 }
@@ -20,7 +26,7 @@ const render = () => {
     fruitBowl(svg, {
         fruits, 
         height: +svg.attr('height'),
-        onClick,
+        setSelectedFruit,
         selectedFruit
     })
 };

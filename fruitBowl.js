@@ -11,7 +11,7 @@ const xPosition = (d, i) => i * 120 + 60;
 export const fruitBowl = (selection, props) => {
     const {fruits, 
         height, 
-        onClick, 
+        setSelectedFruit, 
         selectedFruit} = props;
 
     const circles = selection.selectAll('circle').data(fruits, d => d.id);
@@ -27,7 +27,8 @@ export const fruitBowl = (selection, props) => {
                 ? 'black'
                 : 'none'
             )
-            .on('click', d => onClick(d.id))
+            .on('mouseover', d => setSelectedFruit(d.id))
+            .on('mouseout', () => setSelectedFruit(null))
         .transition().duration(1000)
             .attr('cx', xPosition)
             .attr('r', d => radiusScale(d.type));
